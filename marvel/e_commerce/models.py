@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # NOTE: Para poder utilizar el modelo "user" que viene por defecto en Django,
 # Debemos importarlo previamente:
@@ -49,15 +50,15 @@ class Comic(models.Model):
         return f'{self.title} - {self.id}'
 
 class WishList(models.Model):
-    id = models.BigAutoField(db_column=ID, primary_key=True)
+    id = models.BigAutoField(db_column='ID', primary_key=True)
 
-    user = models.ForeignKey(user, null=False, blank=False, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, null=False, blank=False, on_delete=models.CASCADE)
 
     comic = models.ForeignKey(Comic, verbose_name='Comic', default=1, blank=True, on_delete=models.CASCADE)
 
-    favorite = models.BooleanField(null=True, blank=True)
+    favorite = models.BooleanField(default=False)
 
-    cart = models.PositiveIntegerField(null=True, blank=True)
+    cart = models.BooleanField(default=False)
 
     wished_qty = models.PositiveIntegerField(null=True, blank=True)
 

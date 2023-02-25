@@ -31,4 +31,8 @@ class ComicsAdmin(admin.ModelAdmin):
             'fields': ('description','price', 'picture'),
         }),
     )
-    
+
+@admin.register(WishList)
+class WishListAdmin(admin.ModelAdmin):
+    list_display = ('user', 'comic', 'favorite', 'wished_qty')
+
